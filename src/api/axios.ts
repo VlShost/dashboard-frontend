@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: import.meta.env.BASE_URL,
+  baseURL: 'http://localhost:3000',
 });
 
 instance.interceptors.response.use(
@@ -15,3 +15,5 @@ instance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+export default instance;
