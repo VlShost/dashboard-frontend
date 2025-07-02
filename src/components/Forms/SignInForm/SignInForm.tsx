@@ -3,9 +3,11 @@ import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 
 import instance from '../../../api/axios';
+import { useAuth } from '../../../hooks/useAuth';
 
 const SignInForm = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const formik = useFormik({
     initialValues: {
@@ -21,12 +23,14 @@ const SignInForm = () => {
     onSubmit: async (values, { setSubmitting }) => {
       try {
         const response = await instance.post('auth/signin', values);
-        console.log('Success:', response.data);
+        const { access_token, refresh_token } = response.data;
+
+        login(access_token, refresh_token);
+        navigate('/companies');
       } catch (error) {
         console.log(error);
       } finally {
         setSubmitting(false);
-        navigate('/companies');
       }
     },
   });

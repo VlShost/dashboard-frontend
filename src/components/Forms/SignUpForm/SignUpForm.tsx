@@ -24,12 +24,12 @@ const SignUpForm = () => {
     onSubmit: async (values, { setSubmitting }) => {
       try {
         const response = await instance.post('auth/signup', values);
-        console.log('Success:', response.data);
+        console.log(response);
+        navigate('/auth/signin');
       } catch (error) {
         console.log(error);
       } finally {
         setSubmitting(false);
-        navigate('/auth/signin');
       }
     },
   });
