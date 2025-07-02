@@ -1,8 +1,11 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import instance from '../../../api/axios';
+import { useNavigate } from 'react-router-dom';
 
 const SignUpForm = () => {
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -21,12 +24,12 @@ const SignUpForm = () => {
     onSubmit: async (values, { setSubmitting }) => {
       try {
         const response = await instance.post('auth/signup', values);
-        console.log(JSON.stringify(values, null, 2));
         console.log('Success:', response.data);
       } catch (error) {
         console.log(error);
       } finally {
         setSubmitting(false);
+        navigate('/auth/signin');
       }
     },
   });
