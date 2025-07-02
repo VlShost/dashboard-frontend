@@ -1,0 +1,13 @@
+@use '../../../styles/vars' as *;
+
+.header {
+  padding: 10px;
+
+  border: 1px solid #{getColor('header-border')};
+}
+
+.navList {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}

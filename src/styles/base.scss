@@ -4,6 +4,8 @@
 @use './reset';
 
 body {
+  padding: 16px;
+
   background-color: #{getColor('body-bg')};
   color: #{getColor('txt-black')};
 
