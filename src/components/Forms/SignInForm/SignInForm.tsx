@@ -1,25 +1,70 @@
-import React from 'react';
+import * as Yup from 'yup';
+import { useFormik } from 'formik';
+import { useNavigate } from 'react-router-dom';
+
+import instance from '../../../api/axios';
 
 const SignInForm = () => {
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    console.log('form submitted');
-  };
+  const navigate = useNavigate();
+
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: Yup.object({
+      email: Yup.string().email('Invalid email address').required('Email is required'),
+      password: Yup.string()
+        .required('Password is required')
+        .min(6, 'Password must be at least 6 characters long'),
+    }),
+    onSubmit: async (values, { setSubmitting }) => {
+      try {
+        const response = await instance.post('auth/signin', values);
+        console.log('Success:', response.data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setSubmitting(false);
+        navigate('/companies');
+      }
+    },
+  });
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={formik.handleSubmit}>
       <h2>Sign In</h2>
 
       <div>
         <label>
-          <input type="email" placeholder="Email" />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
         </label>
+        {formik.touched.email && formik.errors.email && (
+          <div style={{ color: 'red' }}>{formik.errors.email}</div>
+        )}
       </div>
 
       <div>
         <label>
-          <input type="password" placeholder="Password" />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
         </label>
+        {formik.touched.password && formik.errors.password && (
+          <div style={{ color: 'red' }}>{formik.errors.password}</div>
+        )}
       </div>
 
       <button type="submit">Sign In</button>
