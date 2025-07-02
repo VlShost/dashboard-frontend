@@ -1,7 +1,13 @@
-import React from 'react';
+import CompaniesList from '../components/Companies/CompaniesList/CompaniesList';
+import CreateCompanyForm from '../components/Forms/CreateCompanyForm/CreateCompanyForm';
 
 const Companies = () => {
-  return <div>Companies</div>;
+  return (
+    <>
+      <CreateCompanyForm />
+      <CompaniesList />
+    </>
+  );
 };
 
 export default Companies;
