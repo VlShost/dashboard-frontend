@@ -14,10 +14,12 @@
     "@tanstack/react-query-devtools": "^5.81.5",
     "axios": "^1.10.0",
     "formik": "^2.4.6",
+    "modern-normalize": "^3.0.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.3",
     "react-toastify": "^11.0.5",
+    "sass": "^1.89.2",
     "yup": "^1.6.1"
   },
   "devDependencies": {

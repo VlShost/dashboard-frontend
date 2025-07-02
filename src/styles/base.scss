@@ -1,0 +1,25 @@
+@use 'modern-normalize/modern-normalize.css';
+@use './vars' as *;
+@use './utils' as *;
+@use './reset';
+
+body {
+  background-color: #{getColor('body-bg')};
+  color: #{getColor('txt-black')};
+
+  font-family: 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
+  font-style: normal;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  cursor: pointer;
+}
+
+section {
+  width: 100%;
+  overflow: hidden;
+}

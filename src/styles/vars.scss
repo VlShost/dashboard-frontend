@@ -1,0 +1,24 @@
+$mobile: 375px;
+$tablet: 744px;
+$laptop: 1024px;
+$laptop-L: 1440px;
+$desktop: 1920px;
+
+$colors: (
+  'body-bg': #f1f1f1,
+  'footer-bg': #061b29,
+  'burger-bg': #061b29,
+  'question-bg': #fcfcfc,
+  'answer-bg': #0d61971a,
+  'main': #72b6d3,
+  'text': #f1f1f1,
+  'txt-black': #1a1a18,
+  'accent': #0d6197,
+  'error': #9d0707,
+  'img-border': #7d7d7d,
+  'img-placeholder': #dddddd,
+  'backdrop': rgba(0, 0, 0, 0.7),
+  'hover': #066fb2,
+  'clicked': #05283f,
+  'disabled': #7d7d7d,
+);
