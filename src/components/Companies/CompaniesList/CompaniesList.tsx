@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchCompanies } from '../../../api/company';
+import { fetchCompanies } from '../../../services/company';
 import type { Company } from '../../../types/company';
 
 const CompaniesList = () => {
@@ -14,6 +14,7 @@ const CompaniesList = () => {
   if (isError) {
     return <div>Failed to load companies</div>;
   }
+
   return (
     <>
       <div>CompaniesList</div>

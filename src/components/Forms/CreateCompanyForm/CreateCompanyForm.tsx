@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { createCompany } from '../../../api/company';
+import { createCompany } from '../../../services/company';
 
 const CreateCompanyForm = () => {
   const queryClient = useQueryClient();
