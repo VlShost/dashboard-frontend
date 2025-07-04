@@ -1,7 +1,11 @@
 import { NavLink } from 'react-router-dom';
+import { useAuthContext } from '../../../hooks/useAuthContext';
+
 import css from './Header.module.scss';
 
 const Header = () => {
+  const { logout } = useAuthContext();
+
   return (
     <header className={css.header}>
       <nav className={css.nav}>
@@ -24,6 +28,12 @@ const Header = () => {
 
           <li className={css.navItem}>
             <NavLink to="/dashboard">Dashboard</NavLink>
+          </li>
+
+          <li className={css.navItem}>
+            <button type="button" onClick={logout}>
+              Logout
+            </button>
           </li>
         </ul>
       </nav>
