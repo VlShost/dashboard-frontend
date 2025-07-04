@@ -6,12 +6,10 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use((config) => {
-  console.log('[Axios] Запрос отправляется');
   const token = getAccessToken();
 
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
-    console.log('[Axios] access_token добавлен в заголовок');
   }
 
   return config;
@@ -19,12 +17,9 @@ instance.interceptors.request.use((config) => {
 
 instance.interceptors.response.use(
   (response) => {
-    console.log('[Axios] Ответ получен');
-    console.log(response);
     return response;
   },
   async (error) => {
-    console.log('[Axios] Ошибка получена', error.response?.status);
     const prevRequest = error?.config;
 
     if (error?.response?.status === 401 && !prevRequest?.sent) {

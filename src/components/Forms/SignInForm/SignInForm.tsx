@@ -3,10 +3,11 @@ import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 
 import { signIn } from '../../../services/auth';
-import { setTokens } from '../../../services/token';
+import { useAuthContext } from '../../../hooks/useAuthContext';
 
 const SignInForm = () => {
   const navigate = useNavigate();
+  const { login } = useAuthContext();
 
   const formik = useFormik({
     initialValues: {
@@ -22,13 +23,12 @@ const SignInForm = () => {
     onSubmit: async (values, { setSubmitting }) => {
       try {
         const tokens = await signIn(values);
-        // const { access_token, refresh_token } = response;
+
         login(tokens);
-        // setTokens(access_token, refresh_token);
 
         navigate('/companies');
       } catch (error) {
-        console.log(error);
+        console.error(error);
       } finally {
         setSubmitting(false);
       }
