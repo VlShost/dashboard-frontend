@@ -8,8 +8,11 @@ import Companies from './pages/Companies';
 import PublicRoute from './router/PublicRoute';
 import PrivateRoute from './router/PrivateRoute';
 import Layout from './components/SharedLayout/Layout/Layout';
+import { useEffect } from 'react';
 
 function App() {
+  useEffect(() => {}, []);
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>

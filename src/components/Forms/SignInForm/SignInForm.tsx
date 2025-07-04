@@ -2,12 +2,11 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 
-import instance from '../../../api/axios';
-import { useAuth } from '../../../hooks/useAuth';
+import { signIn } from '../../../services/auth';
+import { setTokens } from '../../../services/token';
 
 const SignInForm = () => {
   const navigate = useNavigate();
-  const { login } = useAuth();
 
   const formik = useFormik({
     initialValues: {
@@ -22,10 +21,11 @@ const SignInForm = () => {
     }),
     onSubmit: async (values, { setSubmitting }) => {
       try {
-        const response = await instance.post('auth/signin', values);
-        const { access_token, refresh_token } = response.data;
+        const tokens = await signIn(values);
+        // const { access_token, refresh_token } = response;
+        login(tokens);
+        // setTokens(access_token, refresh_token);
 
-        login(access_token, refresh_token);
         navigate('/companies');
       } catch (error) {
         console.log(error);

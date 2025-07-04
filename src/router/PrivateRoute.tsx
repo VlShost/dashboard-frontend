@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 interface PrivateRouteProps {
   component: JSX.Element;
@@ -8,9 +8,9 @@ interface PrivateRouteProps {
 }
 
 const PrivateRoute = ({ component, redirectTo }: PrivateRouteProps) => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuthContext();
 
-  return isAuthenticated() ? component : <Navigate to={redirectTo} replace />;
+  return isAuthenticated ? component : <Navigate to={redirectTo} replace />;
 };
 
 export default PrivateRoute;

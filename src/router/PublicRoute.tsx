@@ -1,6 +1,7 @@
 import type { JSX } from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth';
+
+import { useAuthContext } from '../hooks/useAuthContext';
 
 interface PublicRouteProps {
   component: JSX.Element;
@@ -8,9 +9,9 @@ interface PublicRouteProps {
 }
 
 const PublicRoute = ({ component, redirectTo }: PublicRouteProps) => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuthContext();
 
-  return isAuthenticated() ? <Navigate to={redirectTo} replace /> : component;
+  return isAuthenticated ? <Navigate to={redirectTo} replace /> : component;
 };
 
 export default PublicRoute;
